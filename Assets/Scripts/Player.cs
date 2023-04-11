@@ -50,13 +50,13 @@ public class Player : MonoBehaviour
         }
 
         // Mover el personaje hacia la izquierda o la derecha con las teclas de flecha
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (move == 0)
         {
-            transform.position += Vector3.left * speed * Time.deltaTime;
+            animator.SetBool("avanzar", false);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        else
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
+            animator.SetBool("avanzar", true);
         }
     }
 }
