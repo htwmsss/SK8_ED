@@ -58,9 +58,40 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("avanzar", true);
         }
+
     }
 }
+public class DoubleJump : MonoBehaviour
+{
+    public float jumpForce = 10f;
+    public int maxJumps = 2;
+    private int jumpsLeft;
 
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        jumpsLeft = maxJumps;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && jumpsLeft > 0)
+        {
+            rb.velocity = Vector2.up * jumpForce; // Aplicar la fuerza de salto
+            jumpsLeft--;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            jumpsLeft = maxJumps;
+        }
+    }
+}
 
 
 
