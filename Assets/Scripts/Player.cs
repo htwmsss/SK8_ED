@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +12,16 @@ public class Player : MonoBehaviour
     public Animator animator;           // Referencia al componente Animator
     private bool grounded = false;      // Booleano para determinar si el personaje está en el suelo
     private float groundRadius = 0.2f;  // Radio para detectar el suelo
+ 
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Si el jugador colisiona con algo, se reinicia el juego
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
-    // Update is called once per frame
-    void Update()
+
+// Update is called once per frame
+void Update()
     {
         // Mover el personaje hacia la izquierda o la derecha
         float move = Input.GetAxis("Horizontal");
@@ -59,6 +67,7 @@ public class Player : MonoBehaviour
             animator.SetBool("avanzar", true);
         }
 
+
     }
 }
 public class DoubleJump : MonoBehaviour
@@ -91,6 +100,8 @@ public class DoubleJump : MonoBehaviour
             jumpsLeft = maxJumps;
         }
     }
+
+
 }
 
 

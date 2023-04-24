@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour
     }
     public void EscenaJuego()
     {
-        SceneManager.LoadScene("Jugar");
+        SceneManager.LoadScene("Sk8");
     }
     public void CargarNivel(string nombreNivel)
     {
